@@ -1,0 +1,11 @@
+ASSERT FAILED: [index<size_vertex()] with message: Index (2746) must be less than the current size of the vertices (2746)
+In file [/home/thep/Documents/tp_projectif/projet/src/lib/mesh/mesh_basic.cpp] 
+In function [vertex]
+At line 42 
+
+0       0x556cbd376d06 cpe::get_backtrace[abi:cxx11](int) + 70
+1       0x556cbd3802db cpe::mesh_basic::vertex(int) const + 795
+2       0x556cbd38f349 cpe::render(cpe::image&, cpe::image_zbuffer&, cpe::mesh const&, cpe::mat4 const&, cpe::mat4 const&, cpe::mat4 const&) + 153
+3       0x556cbd357ad5 main + 1413
+4       0x7f21fad3bb97 __libc_start_main + 231
+5       0x556cbd357f5a _start + 42
