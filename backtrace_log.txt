@@ -1,11 +1,12 @@
-ASSERT FAILED: [index<size_vertex()] with message: Index (2746) must be less than the current size of the vertices (2746)
-In file [/home/thep/Documents/tp_projectif/projet/src/lib/mesh/mesh_basic.cpp] 
-In function [vertex]
-At line 42 
+ASSERT FAILED: [std::abs(norm(axis)-1.0f)<1e-5f] with message: Axis must be of norm 1
+In file [/home/thep/Documents/tp_projectif/projet/src/lib/3d/vec3.cpp] 
+In function [reflected]
+At line 216 
 
-0       0x556cbd376d06 cpe::get_backtrace[abi:cxx11](int) + 70
-1       0x556cbd3802db cpe::mesh_basic::vertex(int) const + 795
-2       0x556cbd38f349 cpe::render(cpe::image&, cpe::image_zbuffer&, cpe::mesh const&, cpe::mat4 const&, cpe::mat4 const&, cpe::mat4 const&) + 153
-3       0x556cbd357ad5 main + 1413
-4       0x7f21fad3bb97 __libc_start_main + 231
-5       0x556cbd357f5a _start + 42
+0       0x55c04e875d06 cpe::get_backtrace[abi:cxx11](int) + 70
+1       0x55c04e874a5b cpe::reflected(cpe::vec3 const&, cpe::vec3 const&) + 347
+2       0x55c04e88daf4 cpe::vertex_shader(cpe::vec3&, cpe::color&, cpe::vec3 const&, cpe::color const&, cpe::vec3 const&, cpe::mat4 const&, cpe::mat4 const&, cpe::mat4 const&) + 180
+3       0x55c04e88ddef cpe::render(cpe::image&, cpe::image_zbuffer&, cpe::vec3 const&, cpe::vec3 const&, cpe::vec3 const&, cpe::color const&, cpe::color const&, cpe::color const&, cpe::vec3 const&, cpe::vec3 const&, cpe::vec3 const&, cpe::mat4 const&, cpe::mat4 const&, cpe::mat4 const&) + 303
+4       0x55c04e856a38 main + 936
+5       0x7f7186accb97 __libc_start_main + 231
+6       0x55c04e856f5a _start + 42

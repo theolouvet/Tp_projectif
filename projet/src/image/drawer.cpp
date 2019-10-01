@@ -49,15 +49,9 @@ void draw_line(image& im,ivec2 const& p0,ivec2 const& p1,color const& c)
     //
     */
     line_discrete line2;
-
     bresenham(p0, p1, line2);
-
-    for(std::vector<ivec2>::const_iterator it = line2.begin(); it != line2.end(); ++it){
+    for(std::vector<ivec2>::const_iterator it = line2.begin(); it != line2.end(); ++it)
        im((*it).x(),(*it).y()) = c;
-    }
-
-
-
 }
 
 void draw_line(image& im,ivec2 const& p0,ivec2 const& p1,color const& c0,color const& c1)
@@ -83,9 +77,8 @@ void draw_line(image& im,ivec2 const& p0,ivec2 const& p1,color const& c0,color c
     line_discrete line;
     bresenham(p0, p1, line);
     line_interpolation_parameter interpolation(line);
-     std::vector<float>::const_iterator itInter = interpolation.begin();
-    for(std::vector<ivec2>::const_iterator it = line.begin(); it != line.end(); ++it){
-     
+    std::vector<float>::const_iterator itInter = interpolation.begin();
+    for(std::vector<ivec2>::const_iterator it = line.begin(); it != line.end(); ++it){ 
        im((*it).x(),(*it).y()) = (1 - (*itInter))*c0 + (*itInter)*c1;
        ++itInter;
     }
@@ -121,18 +114,10 @@ void draw_triangle(image& im,
     //
     */
     draw_triangle_wireframe(im ,p0, p1, p2, c);
-    /*auto scanline = triangle_scanline_factory(p0,p1,p2 ,
-    0.0f,1.0f,2.0f);*/
     auto scanline = triangle_scanline_factory(p0,p1,p2 ,
     0.0f,1.0f,2.0f);
-        //valeur chelou interpolation cumule
-    for(auto const& value : scanline){
+    for(auto const& value : scanline)
         draw_line(im, value.second.left.coordinate, value.second.right.coordinate,c);
-
-       // draw_line();
-    }
-
-
 }
 
 
@@ -161,34 +146,15 @@ void draw_triangle(image& im,
     //        avec couleur variant entre ca et cb
     //
     */
-
-
     draw_triangle_wireframe(im , p0, p1, p2 , c0);
     auto scanline = triangle_scanline_factory(p0, p1, p2, c0, c1, c2);
-
-    for(auto const& value : scanline){
-
+    for(auto const& value : scanline)
         draw_line(im, value.second.left.coordinate, value.second.right.coordinate,value.second.left.parameter,value.second.right.parameter);
-
-       // draw_line();
-    }
-
-
-
 }
 
 
 void draw_point(image& im,image_zbuffer& zbuffer,ivec2 const& p,float const z,color const& c)
 {
-    if(p.x()<0 || p.x()>=im.Nx())
-        return ;
-    if(p.y()<0 || p.y()>=im.Ny())
-        return ;
-
-    if(zbuffer(p) > z){
-        im(p) = c;
-        zbuffer(p) = z;
-    }
 
     /*************************************
     // TO DO
@@ -197,6 +163,16 @@ void draw_point(image& im,image_zbuffer& zbuffer,ivec2 const& p,float const z,co
     //   est plus faible que zbuffer(p)
     //  Alors mettre a jour la couleur et le zbuffer
     */
+
+   if(p.x()<0 || p.x()>=im.Nx())
+        return ;
+    if(p.y()<0 || p.y()>=im.Ny())
+        return ;
+
+    if(zbuffer(p) > z){
+        im(p) = c;
+        zbuffer(p) = z;
+    }
 }
 
 
@@ -232,44 +208,28 @@ void draw_triangle(image& im,image_zbuffer& zbuffer,
 
     
     auto scanlineC = triangle_scanline_factory(p0, p1, p2, c0, c1, c2);
-    auto scanlineZ = triangle_scanline_factory(p0, p1, p2, z0, z1, z2);
-    
-
+    auto scanlineZ = triangle_scanline_factory(p0, p1, p2, z0, z1, z2);    
     auto it = scanlineZ.begin();
- 
-    
-    for(auto const& value : scanlineC){
-       
+    for(auto const& value : scanlineC){       
         draw_line(im, zbuffer, value.second.left.coordinate, value.second.right.coordinate, value.second.left.parameter,value.second.right.parameter,
                   it->second.left.parameter,it->second.right.parameter);
         ++it;
         }
     }
 
-    void draw_line(image& im,image_zbuffer& iz ,
+void draw_line(image& im,image_zbuffer& iz ,
                    ivec2 const& p0, ivec2 const& p1 ,
                    color const& c0 ,color const& c1,
                    float z0, float z1){
-        line_discrete line;
-        bresenham(p0, p1, line);
-        line_interpolation_parameter interpolation(line);
-         std::vector<float>::const_iterator itInter = interpolation.begin();
-        for(std::vector<ivec2>::const_iterator it = line.begin(); it != line.end(); ++it){
-           cpe::color a = (1 - (*itInter))*c0 + (*itInter)*c1;
-           float z = (1 - (*itInter))*z0 + (*itInter)*z1;
-           ++itInter;
-           /*if(iz((*it).x(),(*it).y()) > z){
-               im((*it).x(),(*it).y()) = a;
-        }*/
-           draw_point(im, iz, *it, z, a );
-
+    line_discrete line;
+    bresenham(p0, p1, line);
+    line_interpolation_parameter interpolation(line);
+    std::vector<float>::const_iterator itInter = interpolation.begin();
+    for(std::vector<ivec2>::const_iterator it = line.begin(); it != line.end(); ++it){
+        cpe::color a = (1 - (*itInter))*c0 + (*itInter)*c1;
+        float z = (1 - (*itInter))*z0 + (*itInter)*z1;
+        ++itInter;
+        draw_point(im, iz, *it, z, a );
     }
-
-
-
 }
-
-
-
-
 }

@@ -69,14 +69,14 @@ void render(image& im,image_zbuffer& zbuffer,
     vertex_shader(p1_proj,c1_shading , p1,c1,n1 , model,view,projection);
     vertex_shader(p2_proj,c2_shading , p2,c2,n2 , model,view,projection);
 
-    printf("go nc \n");
+   
     //convert normalized coordinates to pixel coordinate
     ivec2 u0 = coordinates_to_pixel_index(p0_proj,im.Nx(),im.Ny());
     ivec2 u1 = coordinates_to_pixel_index(p1_proj,im.Nx(),im.Ny());
     ivec2 u2 = coordinates_to_pixel_index(p2_proj,im.Nx(),im.Ny());
 
-    printf("go draw \n");
-    std::cout << p0_proj.z() << std::endl ;
+   
+    
     //draw triangle in the screen space
     draw_triangle(im,zbuffer,u0,u1,u2 , c0_shading,c1_shading,c2_shading ,
                   p0_proj.z(),p1_proj.z(),p2_proj.z() );
@@ -136,58 +136,28 @@ void vertex_shader(vec3& p_proj,color& c_shading,
     /*************************************
     // Completez le vertex shader
     */
-   //std::cout << "test vs values" << std::endl;
-   // std::cout << projection << std::endl << std::endl;
-    //std::cout << modelview << std::endl << std::endl;
-    //std::cout << p << std::endl << std::endl;
+  
 
     float ka = 0.2;
     float ks = 0.6;
     float kd = 0.8;
     double es = 128;
-
-    
-/*
     vec3 sourcelumiere = vec3(1,1,1);
-
-    vec3 ul = sourcelumiere  - p;
-
-  
-    vec3 s = reflected(ul,n);
-    vec3 t = vec3(1,0,0);
-
-    float Ia = ka;
-    float Id = kd * sqrt(abs(n.x() * ul.x() +  n.y() * ul.y() + n.z() * ul.z()));
-    std::cout << "test" << s.x() <<   "  " << sqrt(s.x() * t.x() +  s.y() * t.y() + s.z() * t.z()) << std::endl;
-    double Is = ks * pow(sqrt(abs(s.x() * t.x() +  s.y() * t.y() + s.z() * t.z())), es);
-
-    std::cout << "illumination "<<Ia<<"  "<< Id << "   "<< Is  << std::endl;
-
-*/
-
-    vec3 sourcelumiere = vec3(1,1,1);
-
     vec3 ul = normalized(sourcelumiere  - p);
-
-  
     vec3 s = reflected(ul,n);
     vec3 t = vec3(1,0,0);
-
     float Ia = ka;
     float Id = kd * dot(n,ul);
-    std::cout << "test" << s.x() <<   "  " << sqrt(s.x() * t.x() +  s.y() * t.y() + s.z() * t.z()) << std::endl;
     double Is = ks * pow(dot(s,t), es);
 
-   // std::cout << "illumination "<<Ia<<"  "<< Id << "   "<< Is  << std::endl;
-
-
-    vec4 p4 =  projection * modelview *  vec4(p.x(), p.y(), p.z(),0);    //a modifier
+    vec4 p4 =  projection * modelview *  vec4(p.x(), p.y(), p.z(),0);   
     p_proj = {p4.x(), p4.y(), p.z()};
-    //std::cout << "p proj" << p_proj << "  "<< projection * modelview  * vec4(p.x(), p.y(), p.z(),0)<< std::endl << std::endl;
+    
+    // Sans illumination de Phong
+    //c_shading = c ;
 
-    //c_shading = color(0.8f, 0.6f, 0.6f) ;
-    c_shading= (Ia + Id)*c + Is ; //a modifier
-   // std::cout<<c_shading<<std::endl;
+    //Avec illumination de Phong
+    c_shading= (Ia + Id)*c + Is ; 
 
 }
 

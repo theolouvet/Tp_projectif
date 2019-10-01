@@ -65,6 +65,8 @@ struct color
     /** Get/set blue value */
     float& b();
 
+    
+
 
 private:
 
@@ -119,6 +121,10 @@ std::ostream& operator<<(std::ostream& stream,color const& c);
 
 /** clamp the color between 0 and 1 */
 color clamp(color const& c);
+
+static const color red = color(1,0,0);
+static const color blue = color(0,0,1);
+static const color green = color(0,1,0);
 
 }
 
