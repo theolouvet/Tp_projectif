@@ -1,12 +1,11 @@
-ASSERT FAILED: [std::abs(norm(axis)-1.0f)<1e-5f] with message: Axis must be of norm 1
-In file [/home/thep/Documents/tp_projectif/projet/src/lib/3d/vec3.cpp] 
-In function [reflected]
-At line 216 
+ASSERT FAILED: [index<size_color()] with message: Index (2746) must be less than the current size of the colors (2746)
+In file [/home/thep/Documents/tp_projectif/projet/src/lib/mesh/mesh_basic.cpp] 
+In function [color]
+At line 72 
 
-0       0x55c04e875d06 cpe::get_backtrace[abi:cxx11](int) + 70
-1       0x55c04e874a5b cpe::reflected(cpe::vec3 const&, cpe::vec3 const&) + 347
-2       0x55c04e88daf4 cpe::vertex_shader(cpe::vec3&, cpe::color&, cpe::vec3 const&, cpe::color const&, cpe::vec3 const&, cpe::mat4 const&, cpe::mat4 const&, cpe::mat4 const&) + 180
-3       0x55c04e88ddef cpe::render(cpe::image&, cpe::image_zbuffer&, cpe::vec3 const&, cpe::vec3 const&, cpe::vec3 const&, cpe::color const&, cpe::color const&, cpe::color const&, cpe::vec3 const&, cpe::vec3 const&, cpe::vec3 const&, cpe::mat4 const&, cpe::mat4 const&, cpe::mat4 const&) + 303
-4       0x55c04e856a38 main + 936
-5       0x7f7186accb97 __libc_start_main + 231
-6       0x55c04e856f5a _start + 42
+0       0x55f47c79ac76 cpe::get_backtrace[abi:cxx11](int) + 70
+1       0x55f47c7a69dc cpe::mesh_basic::color(int) const + 796
+2       0x55f47c7b32ed cpe::render(cpe::image&, cpe::image_zbuffer&, cpe::mesh const&, cpe::mat4 const&, cpe::mat4 const&, cpe::mat4 const&) + 1005
+3       0x55f47c77b9a0 main + 672
+4       0x7fe17ae51b97 __libc_start_main + 231
+5       0x55f47c77beca _start + 42

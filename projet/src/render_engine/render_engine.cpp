@@ -102,21 +102,49 @@ void render(image& im,image_zbuffer& zbuffer,mesh const& m,
     //
     //   Affichage du triangle courant
     */
+    std::cout << "size " << m.size_vertex() << std::endl;
+    vec3 p0, p1, p2, n0, n1, n2;
+    color c0 , c1, c2;
 
-   for(int k = 0; k <= m.size_vertex()/3; k+=3){
-       vec3 p0 = m.vertex(k);
-       vec3 p1 = m.vertex(k + 1);
-       vec3 p2 = m.vertex(k + 2);
-
-       color c0 = color(m.color(k).x(), m.color(k).y(), m.color(k).z());
-       color c1 = color(m.color(k+1).x(), m.color(k+1).y(), m.color(k+1).z());
-       color c2 = color(m.color(k+2).x(), m.color(k+2).y(), m.color(k+2).z());
-
-       vec3 n0 = m.normal(k);
-       vec3 n1 = m.normal(k+1);
-       vec3 n2 = m.normal(k+2);
+    std::cout <<",ndknjo" << m.size_vertex() << "  "<<m.size_connectivity();
+    for(int k = 0; k < m.size_connectivity()   ; k++){
        
+       int x = m.connectivity(k).u0();
+       int y = m.connectivity(k).u1();
+       int z = m.connectivity(k).u2();
+
+       p0 = m.vertex(m.connectivity(k).u0());
+       p1 = m.vertex(m.connectivity(k).u1());
+       p2 = m.vertex(m.connectivity(k).u2());
+      //  std::cout <<" " << p0<<" " << p1<<" " << p2 << std::endl;
+       c0 = color(m.color(x).x(), m.color(x).y(), m.color(x).z());
+       c1 = color(m.color(y).x(), m.color(y).y(), m.color(y).z());
+       c2 = color(m.color(z).x(), m.color(z).y(), m.color(z).z());
+
+       n0 = m.normal(m.connectivity(k).u0());
+       n1 = m.normal(m.connectivity(k).u1());
+       n2 = m.normal(m.connectivity(k).u2());
+      
+       // std::cout<<"test  "<<m.connectivity(k);
+
        render(im, zbuffer, p0, p1, p2, c0, c1, c2, n0, n1, n2, model, view, projection);
+       /*
+       p0 = m.vertex(k + 3);
+       p1 = m.vertex(k + 1);
+       p2 = m.vertex(k + 2);
+      //  std::cout <<" " << p0<<" " << p1<<" " << p2 << std::endl;
+       c0 = color(m.color(k).x(), m.color(k).y(), m.color(k).z());
+       c1 = color(m.color(k+1).x(), m.color(k+1).y(), m.color(k+1).z());
+       c2 = color(m.color(k+2).x(), m.color(k+2).y(), m.color(k+2).z());
+
+       n0 = m.normal(k);
+       n1 = m.normal(k+1);
+       n2 = m.normal(k+2);
+      
+
+
+       render(im, zbuffer, p0, p1, p2, c0, c1, c2, n0, n1, n2, model, view, projection);
+       */
 
    }
   
@@ -142,7 +170,7 @@ void vertex_shader(vec3& p_proj,color& c_shading,
     float ks = 0.6;
     float kd = 0.8;
     double es = 128;
-    vec3 sourcelumiere = vec3(1,1,1);
+    vec3 sourcelumiere = vec3(-1,-1,-1);
     vec3 ul = normalized(sourcelumiere  - p);
     vec3 s = reflected(ul,n);
     vec3 t = vec3(1,0,0);
