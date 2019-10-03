@@ -314,6 +314,7 @@ CMakeFiles/pgm.dir/projet/src/render_engine/render_engine.cpp.o: projet/src/imag
 CMakeFiles/pgm.dir/projet/src/render_engine/render_engine.cpp.o: projet/src/image/image_zbuffer.hpp
 CMakeFiles/pgm.dir/projet/src/render_engine/render_engine.cpp.o: projet/src/image/template/image_basic.hpp
 CMakeFiles/pgm.dir/projet/src/render_engine/render_engine.cpp.o: projet/src/image/template/image_basic.tpp
+CMakeFiles/pgm.dir/projet/src/render_engine/render_engine.cpp.o: projet/src/image/texture.hpp
 CMakeFiles/pgm.dir/projet/src/render_engine/render_engine.cpp.o: projet/src/lib/3d/mat4.hpp
 CMakeFiles/pgm.dir/projet/src/render_engine/render_engine.cpp.o: projet/src/lib/3d/vec2.hpp
 CMakeFiles/pgm.dir/projet/src/render_engine/render_engine.cpp.o: projet/src/lib/3d/vec3.hpp

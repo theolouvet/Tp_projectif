@@ -157,7 +157,7 @@ int main(int argc,char *argv[])
         projection.set_projection_perspective(60*M_PI/180.0f,1.0f,0.1f,20.0f);
 
         //Illumination de Phong
-        /****
+        /*
         vec3 p0 = {-1,-1,0};
         vec3 p1 = {1,-1,-1};
         vec3 p2 = {1,1,0};
@@ -171,8 +171,8 @@ int main(int argc,char *argv[])
         n0 = normalized(cross(p01,p02)); 
         n1 = normalized(cross(p10,p12)); 
         n2 = normalized(cross(p20,p21)); 
-        render(im, iz, p0, p1, p2, red, green, blue, n0, n1, n2, model, view, projection);
-        *******/
+        render(im, iz, p0, p1, p2, red, green, green, n0, n1, n2, model, view, projection);
+        */
         
         
         // Maillage
@@ -182,8 +182,8 @@ int main(int argc,char *argv[])
         //applique potentiellement une rotation, translation
         //(scaling possible egalement)
         //m.transform_apply_rotation({0,1,0},-M_PI/4.0f);
-        m.transform_apply_rotation({0,1,0},-M_PI);
-        m.transform_apply_translation({0,0,-1.5f});
+       // m.transform_apply_rotation({0,1,0},-M_PI);
+       // m.transform_apply_translation({0,0,-1.5f});
         m.fill_color({1,1,1}); //applique la couleur blanche 
         m.fill_normal(); //calcul automatique des normales
         render(im, iz, m, model, view, projection);

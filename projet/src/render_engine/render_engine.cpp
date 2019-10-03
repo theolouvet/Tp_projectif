@@ -29,7 +29,7 @@
 #include "image/drawer.hpp"
 #include "lib/mesh/mesh.hpp"
 #include "lib/common/basic_functions.hpp"
-
+#include "image/texture.hpp"
 #include <cmath>
 
 namespace cpe
@@ -105,8 +105,12 @@ void render(image& im,image_zbuffer& zbuffer,mesh const& m,
     std::cout << "size " << m.size_vertex() << std::endl;
     vec3 p0, p1, p2, n0, n1, n2;
     color c0 , c1, c2;
+    image it;
+    it.load("projet/data/Frankie/Frankie.ppm");
 
-    std::cout <<",ndknjo" << m.size_vertex() << "  "<<m.size_connectivity();
+       texture t = (it.Nx(),it.Ny());
+  
+   t.load("projet/data/Frankie/Frankie.ppm");
     for(int k = 0; k < m.size_connectivity()   ; k++){
        
        int x = m.connectivity(k).u0();
@@ -117,9 +121,30 @@ void render(image& im,image_zbuffer& zbuffer,mesh const& m,
        p1 = m.vertex(m.connectivity(k).u1());
        p2 = m.vertex(m.connectivity(k).u2());
       //  std::cout <<" " << p0<<" " << p1<<" " << p2 << std::endl;
-       c0 = color(m.color(x).x(), m.color(x).y(), m.color(x).z());
+     /*  c0 = color(m.color(x).x(), m.color(x).y(), m.color(x).z());
        c1 = color(m.color(y).x(), m.color(y).y(), m.color(y).z());
        c2 = color(m.color(z).x(), m.color(z).y(), m.color(z).z());
+*/     
+
+
+       float u = 0.5f;
+       float v = 0.4f; 
+       
+      // t.Nx() = 1000;
+      // t.Ny = 1000;
+       vec2 test = {0.1f,0.2f};
+       color c;
+       vec2 textcoord = m.texture_coord(x);
+       
+       //std::cout << m.texture_coord(x) << "  "<< t(test) << std::endl;
+       color az = t(textcoord);
+       
+       //color a = it();
+       c0 = t(m.texture_coord(x));
+       c1 = t(m.texture_coord(y));
+       c2 = t(m.texture_coord(z));
+       std::cout << m.texture_coord(x) << "  "<< c0 << std::endl; 
+
 
        n0 = m.normal(m.connectivity(k).u0());
        n1 = m.normal(m.connectivity(k).u1());
@@ -170,20 +195,20 @@ void vertex_shader(vec3& p_proj,color& c_shading,
     float ks = 0.6;
     float kd = 0.8;
     double es = 128;
-    vec3 sourcelumiere = vec3(-1,-1,-1);
+    vec3 sourcelumiere = vec3(0,0,1);
     vec3 ul = normalized(sourcelumiere  - p);
-    vec3 s = reflected(ul,n);
-    vec3 t = vec3(1,0,0);
+    vec3 s = -reflected(ul,n);
+    vec3 t = vec3(0,0,-1);
     float Ia = ka;
     float Id = kd * dot(n,ul);
     double Is = ks * pow(dot(s,t), es);
 
     vec4 p4 =  projection * modelview *  vec4(p.x(), p.y(), p.z(),0);   
-    p_proj = {p4.x(), p4.y(), p.z()};
+    p_proj = {p4.x(), p4.y(), p4.z()};
     
     // Sans illumination de Phong
     //c_shading = c ;
-
+  
     //Avec illumination de Phong
     c_shading= (Ia + Id)*c + Is ; 
 

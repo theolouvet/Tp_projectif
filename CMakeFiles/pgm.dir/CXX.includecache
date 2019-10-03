@@ -189,6 +189,8 @@ color.hpp
 /home/thep/Documents/tp_projectif/projet/src/image/color.hpp
 lib/3d/vec2.hpp
 /home/thep/Documents/tp_projectif/projet/src/image/lib/3d/vec2.hpp
+iostream
+-
 
 /home/thep/Documents/tp_projectif/projet/src/image/texture.hpp
 image.hpp
@@ -571,6 +573,8 @@ lib/mesh/mesh.hpp
 /home/thep/Documents/tp_projectif/projet/src/render_engine/lib/mesh/mesh.hpp
 lib/common/basic_functions.hpp
 /home/thep/Documents/tp_projectif/projet/src/render_engine/lib/common/basic_functions.hpp
+image/texture.hpp
+/home/thep/Documents/tp_projectif/projet/src/render_engine/image/texture.hpp
 cmath
 -
 

@@ -315,6 +315,7 @@ CMakeFiles/pgm.dir/projet/src/render_engine/render_engine.cpp.o
  projet/src/image/image_zbuffer.hpp
  projet/src/image/template/image_basic.hpp
  projet/src/image/template/image_basic.tpp
+ projet/src/image/texture.hpp
  projet/src/lib/3d/mat4.hpp
  projet/src/lib/3d/vec2.hpp
  projet/src/lib/3d/vec3.hpp

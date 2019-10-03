@@ -20,6 +20,8 @@
 #include "color.hpp"
 #include "lib/3d/vec2.hpp"
 
+#include <iostream>
+
 namespace cpe
 {
 
@@ -32,7 +34,8 @@ color texture::operator()(float const u,float const v) const
     // v is inverted due to the vertical system axis.
     float const u_pixel = u*(Nx()-2);
     float const v_pixel = (1-v)*(Ny()-2);
-
+    
+    //std::cout << u_pixel << "  " << v_pixel << "  " << Nx() <<"  "<< Ny() << std::endl;
     //sanity check
     ASSERT_CPE(u_pixel>=0 && u_pixel<Nx(),"error u_pixel");
     ASSERT_CPE(v_pixel>=0 && v_pixel<Ny(),"error u_pixel");

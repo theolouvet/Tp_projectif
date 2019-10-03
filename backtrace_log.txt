@@ -1,11 +1,11 @@
-ASSERT FAILED: [index<size_color()] with message: Index (2746) must be less than the current size of the colors (2746)
+ASSERT FAILED: [index<size_texture_coord()] with message: Index (2746) must be less than the current size of the texture coordinates (2746)
 In file [/home/thep/Documents/tp_projectif/projet/src/lib/mesh/mesh_basic.cpp] 
-In function [color]
-At line 72 
+In function [texture_coord]
+At line 87 
 
-0       0x55f47c79ac76 cpe::get_backtrace[abi:cxx11](int) + 70
-1       0x55f47c7a69dc cpe::mesh_basic::color(int) const + 796
-2       0x55f47c7b32ed cpe::render(cpe::image&, cpe::image_zbuffer&, cpe::mesh const&, cpe::mat4 const&, cpe::mat4 const&, cpe::mat4 const&) + 1005
-3       0x55f47c77b9a0 main + 672
-4       0x7fe17ae51b97 __libc_start_main + 231
-5       0x55f47c77beca _start + 42
+0       0x55e995193c46 cpe::get_backtrace[abi:cxx11](int) + 70
+1       0x55e9951a0bcd cpe::mesh_basic::texture_coord(int) const + 765
+2       0x55e9951ac33e cpe::render(cpe::image&, cpe::image_zbuffer&, cpe::mesh const&, cpe::mat4 const&, cpe::mat4 const&, cpe::mat4 const&) + 1118
+3       0x55e995174975 main + 629
+4       0x7fd2bd2beb97 __libc_start_main + 231
+5       0x55e995174e9a _start + 42
