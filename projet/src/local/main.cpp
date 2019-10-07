@@ -181,9 +181,9 @@ int main(int argc,char *argv[])
                   
         //applique potentiellement une rotation, translation
         //(scaling possible egalement)
-        //m.transform_apply_rotation({0,1,0},-M_PI/4.0f);
+        m.transform_apply_rotation({0,1,0},-M_PI/4.0f);
        // m.transform_apply_rotation({0,1,0},-M_PI);
-       // m.transform_apply_translation({0,0,-1.5f});
+        m.transform_apply_translation({0,0,-1.5f});
         m.fill_color({1,1,1}); //applique la couleur blanche 
         m.fill_normal(); //calcul automatique des normales
         render(im, iz, m, model, view, projection);
