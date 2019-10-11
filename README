@@ -1,3 +1,10 @@
+En cas de problème avec le Cmakecache, supprimer le contenu du dossier build et recompliler
+le projet en suivant la deuxième méthode.
+Attention si vous compiler à partir du dossier tp_projectif et non du build il faut 
+changer les chemins pour accéder à l'image dans main.cpp et render.cpp
+
+
+
 1) Pour compiler et executer a partir du Makefile
 
 cd projet
