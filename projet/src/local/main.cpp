@@ -177,12 +177,11 @@ int main(int argc,char *argv[])
         
         // Maillage
         //chargement du fichier
-        mesh m = load_mesh_file("projet/data/Frankie/Frankie.obj");
+        mesh m = load_mesh_file("../projet/data/Frankie/Frankie.obj");
                   
         //applique potentiellement une rotation, translation
         //(scaling possible egalement)
         m.transform_apply_rotation({0,1,0},-M_PI/4.0f);
-       // m.transform_apply_rotation({0,1,0},-M_PI);
         m.transform_apply_translation({0,0,-1.5f});
         m.fill_color({1,1,1}); //applique la couleur blanche 
         m.fill_normal(); //calcul automatique des normales

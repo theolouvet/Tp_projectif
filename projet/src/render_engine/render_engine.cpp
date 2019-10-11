@@ -102,14 +102,11 @@ void render(image& im,image_zbuffer& zbuffer,mesh const& m,
     //
     //   Affichage du triangle courant
     */
-    std::cout << "size " << m.size_vertex() << std::endl;
     vec3 p0, p1, p2, n0, n1, n2;
     color c0 , c1, c2;
+    texture t = (im.Nx(),im.Ny());
+    t.load("../projet/data/Frankie/Frankie.ppm");
 
-
-   texture t = (im.Nx(),im.Ny());
-  
-   t.load("projet/data/Frankie/Frankie.ppm");
     for(int k = 0; k < m.size_connectivity()   ; k++){
        
        int x = m.connectivity(k).u0();
@@ -119,26 +116,14 @@ void render(image& im,image_zbuffer& zbuffer,mesh const& m,
        p0 = m.vertex(m.connectivity(k).u0());
        p1 = m.vertex(m.connectivity(k).u1());
        p2 = m.vertex(m.connectivity(k).u2());
-      //  std::cout <<" " << p0<<" " << p1<<" " << p2 << std::endl;
+     
      /*  c0 = color(m.color(x).x(), m.color(x).y(), m.color(x).z());
        c1 = color(m.color(y).x(), m.color(y).y(), m.color(y).z());
        c2 = color(m.color(z).x(), m.color(z).y(), m.color(z).z());
-*/     
-
-
-       float u = 0.5f;
-       float v = 0.4f; 
+    */     
+    
        
-      // t.Nx() = 1000;
-      // t.Ny = 1000;
-       vec2 test = {0.1f,0.2f};
-       color c;
-       vec2 textcoord = m.texture_coord(x);
        
-       //std::cout << m.texture_coord(x) << "  "<< t(test) << std::endl;
-       color az = t(textcoord);
-       
-       //color a = it();
        c0 = t(m.texture_coord(x));
        c1 = t(m.texture_coord(y));
        c2 = t(m.texture_coord(z));
@@ -152,23 +137,7 @@ void render(image& im,image_zbuffer& zbuffer,mesh const& m,
        // std::cout<<"test  "<<m.connectivity(k);
 
        render(im, zbuffer, p0, p1, p2, c0, c1, c2, n0, n1, n2, model, view, projection);
-       /*
-       p0 = m.vertex(k + 3);
-       p1 = m.vertex(k + 1);
-       p2 = m.vertex(k + 2);
-      //  std::cout <<" " << p0<<" " << p1<<" " << p2 << std::endl;
-       c0 = color(m.color(k).x(), m.color(k).y(), m.color(k).z());
-       c1 = color(m.color(k+1).x(), m.color(k+1).y(), m.color(k+1).z());
-       c2 = color(m.color(k+2).x(), m.color(k+2).y(), m.color(k+2).z());
-
-       n0 = m.normal(k);
-       n1 = m.normal(k+1);
-       n2 = m.normal(k+2);
-      
-
-
-       render(im, zbuffer, p0, p1, p2, c0, c1, c2, n0, n1, n2, model, view, projection);
-       */
+       
 
    }
   
